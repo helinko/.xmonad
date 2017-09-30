@@ -14,7 +14,7 @@ main = do
                 { ppOutput = hPutStrLn xmproc
                 , ppTitle = xmobarColor "green" "" . shorten 50
                 }
-    , terminal = "lxterminal"
+    , terminal = "st -e tmux"
     --    , modMask = mod4Mask     -- Rebind Mod to the Windows key
     }
 
