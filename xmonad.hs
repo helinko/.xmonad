@@ -2,7 +2,7 @@ import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Util.EZConfig
 import System.IO
 
 main = do
@@ -17,6 +17,9 @@ main = do
     , terminal = "st -e tmux"
     --    , modMask = mod4Mask     -- Rebind Mod to the Windows key
     }
-
+    `additionalKeysP`
+    [ ("M-<Return>", spawn "st")
+--    , ("M-x f", spawn "firefox")
+    ]
 
 
