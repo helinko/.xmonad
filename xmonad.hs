@@ -8,14 +8,14 @@ import System.IO
 main = do
   xmproc <- spawnPipe "xmobar"
   xmonad $ defaultConfig
-  
     { manageHook = manageDocks <+> manageHook defaultConfig
     , layoutHook = avoidStruts  $  layoutHook defaultConfig
     , logHook = dynamicLogWithPP xmobarPP
                 { ppOutput = hPutStrLn xmproc
                 , ppTitle = xmobarColor "green" "" . shorten 50
                 }
-    , modMask = mod4Mask     -- Rebind Mod to the Windows key
+    , terminal = "lxterminal"
+    --    , modMask = mod4Mask     -- Rebind Mod to the Windows key
     }
 
 
