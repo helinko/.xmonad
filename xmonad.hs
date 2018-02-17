@@ -14,12 +14,11 @@ main = do
                 { ppOutput = hPutStrLn xmproc
                 , ppTitle = xmobarColor "green" "" . shorten 50
                 }
-    , terminal = "st -e tmux"
-    --    , modMask = mod4Mask     -- Rebind Mod to the Windows key
+    , terminal = "st -f \"DejaVu Sans Mono:size=12\" -e tmux"
+    
     }
     `additionalKeysP`
-    [ ("M-<Return>", spawn "st")
+    [  ("M-<Return>", spawn "st -f \"DejaVu Sans Mono:size=12\"")
+    ,  ("M4-l", spawn "alock -b shade:blur=85")
 --    , ("M-x f", spawn "firefox")
     ]
-
-
