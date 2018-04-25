@@ -14,12 +14,13 @@ main = do
                 { ppOutput = hPutStrLn xmproc
                 , ppTitle = xmobarColor "green" "" . shorten 50
                 }
-    , terminal = "st -e tmux"
-    --    , modMask = mod4Mask     -- Rebind Mod to the Windows key
+    , terminal = "alacritty -e tmux"
+      -- "st -f \"Liberation Mono:size=13\" -e tmux"
     }
     `additionalKeysP`
-    [ ("M-<Return>", spawn "st")
---    , ("M-x f", spawn "firefox")
+    [  ("M-<Return>", spawn "alacritty")
+    ,  ("M4-l", spawn "alock")
+    ,  ("M4-S-l", spawn "/home/risto/lock-and-suspend")
     ]
 
 
