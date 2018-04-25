@@ -22,5 +22,3 @@ main = do
     ,  ("M4-l", spawn "alock")
     ,  ("M4-S-l", spawn "/home/risto/lock-and-suspend")
     ]
-
-
