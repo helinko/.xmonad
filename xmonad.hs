@@ -56,7 +56,19 @@ promptedGoto = workspacePrompt myXPConfig goto
 
 promptedShift :: X ()
 promptedShift = workspacePrompt myXPConfig $ windows . W.shift
- 
+
+-- extend your keybindings
+myKeys conf@XConfig{modMask=modm} =
+  [ ((modm              , xK_n     ), spawnShell) -- %! Launch terminal
+  , ((modm              , xK_a     ), currentTopicAction myTopicConfig)
+  , ((modm              , xK_g     ), promptedGoto)
+  , ((modm .|. shiftMask, xK_g     ), promptedShift)
+  {- more  keys ... -}
+  ]
+  ++
+  [ ((modm, k), switchNthLastFocused myTopicConfig i)
+  | (i, k) <- zip [1..] workspaceKeys]
+  
 main = do
   xmproc <- spawnPipe "xmobar"
   xmonad $ docks defaultConfig
@@ -70,7 +82,9 @@ main = do
       -- "st -f \"Liberation Mono:size=13\" -e tmux"
     }
     `additionalKeysP`
-    [  ("M-<Return>", spawn "alacritty")
+    [  ("M-e", promptedGoto) -- e is bad for xinerama!
+    ,  ("M-S-e", promptedShift)
+    ,  ("M-<Return>", spawn "alacritty")
     ,  ("M4-l", spawn "alock")
     ,  ("M4-S-l", spawn "/home/risto/lock-and-suspend")
     ]
